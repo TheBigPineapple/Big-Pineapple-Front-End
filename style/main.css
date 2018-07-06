@@ -11,7 +11,7 @@
 html, body {
     height: 100%;
     width: 100%;
-    background: #dbfcff;
+    background: linear-gradient(white, #dbfcff);
 }
 
 a {
@@ -21,7 +21,7 @@ a {
 header {
     width: 100%;
     background: #FCE967;
-    box-shadow: 0px 5px 5px rgba(0,0,0,.07);
+    box-shadow: 0px 5px 5px rgba(0,0,0,.1);
 }
 
 header > .center-content {
@@ -44,13 +44,22 @@ main {
 footer {
     width: 100%;
     border-top: 1px solid black;
-    background: #823A00;
+    background: rgba(0, 0, 0, .7);
     color: whitesmoke;
+    text-align: center;
+    padding: 5px;
+}
+
+footer > a {
+    color: #9FC8C8;
 }
 
 .center-content {
     width: 1000px;
-    height: 100%;
+    margin: auto;
+}
+
+.abcRioButtonContentWrapper {
     margin: auto;
 }
 
@@ -69,4 +78,27 @@ footer {
     position: absolute;
     opacity: .6;
     z-index: 1;
+}
+
+#landing-content {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-top: -64px;
+    background: rgba(255,255,255,1);
+    width: 800px;
+    padding: 30px;
+}
+
+#landing-content > h2 {
+    font-size: 3em;
+    opacity: .9;
+    text-decoration: underline;
+}
+
+#landing-content > p {
+    color: lightgray;
 }
