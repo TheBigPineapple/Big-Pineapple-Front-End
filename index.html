@@ -20,6 +20,9 @@
             </div>
         </header>
 
+        <div id="background">
+        </div>
+
         <main>
             <div class="center-content" style="height:100%;">
                 <span class="align-middle">
@@ -30,17 +33,6 @@
                     <div class="g-signin2" data-onsuccess="onSignIn">Google Sign In</div>
                 </span>
             </div>
-
-            <script>
-                    // Might have to promise chain this with register habitica
-                    function onSignIn(googleUser) {
-                        var profile = googleUser.getBasicProfile();
-                        console.log('ID: ' + profile.getId());
-                        console.log('Name: ' + profile.getName());
-                        console.log('Image URL: ' + profile.getImageUrl());
-                        console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-                    }
-                </script>
         </main>
 
         <footer>
@@ -53,6 +45,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="scripts/signOn.js"></script>
 </body>
 
 </html>
