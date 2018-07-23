@@ -2,11 +2,10 @@
 // coordinates for event search set to Columbia University by default
 var latitude = 40.8075;
 var longitude = -73.9626;
-
 getLocation();
-var charityEvents = getCharityEvents(latitude, longitude);
-addEventsToGCal(charityEvents, /* Goog Auth stuff */);
+var charityEvents = getCharityEvents();
 
+addEventsToGCal(events, userGAPI);
 
 
 function getLocation() {
@@ -23,8 +22,7 @@ function storePosition(position) {
 }
 
 
-function getCharityEvents(latitude, longitude)
-{
+function getCharityEvents(latitude, longitude) {
     var headers = {"Authorization" : "Bearer" + config.eventbrite_personal_OAuth};
     var public_token = "JC4FQ5WJYL7ZSF2H5G2O";
 
@@ -47,7 +45,7 @@ function getCharityEvents(latitude, longitude)
     return events;
 }
 
-function addEventsToGCal(events, /* whatever is needed for GCal user auth*/)
-{
+function addEventsToGCal(events, userGAPI) {
     // TODO: this function :)
+    // gapi from signOn.js hold all account info for gcal
 }
