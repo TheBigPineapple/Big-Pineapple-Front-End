@@ -11,7 +11,6 @@
     <link rel="stylesheet" type="text/css" href="style/main.css">
 </head>
 
-<body>
     <div id="site-wrapper">
 
         <header>
@@ -34,6 +33,15 @@
                 </p>
 
                 <div class="g-signin2" data-onsuccess="onSignIn" style="margin: auto; width: 120px">Google Sign In</div>
+                <div id='content'>
+                    <h1>Events</h1>
+                    <ul id='events'></ul>
+                </div>
+                <a href='#' id='authorize-button' onclick='handleAuthClick();'>Click Here to Add Volunteer Events to Your Calendar!</a>
+
+
+                <script src="addEventsToGCal.js"></script>
+                <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
             </div>
         </main>
 
@@ -49,6 +57,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/signOn.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+
+
+
 </body>
 
 </html>
