@@ -50,7 +50,7 @@ footer {
     padding: 5px;
 }
 
-footer > a {
+footer a {
     color: #9FC8C8;
 }
 
@@ -87,8 +87,9 @@ footer > a {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    margin-top: -64px;
+    margin-top: -100px;
     background: rgba(255,255,255,1);
+    box-shadow: 5px 5px 5px rgba(0,0,0,.2);
     width: 800px;
     padding: 30px;
 }
@@ -100,5 +101,5 @@ footer > a {
 }
 
 #landing-content > p {
-    color: lightgray;
+    color: gray;
 }

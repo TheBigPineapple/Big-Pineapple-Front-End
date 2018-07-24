@@ -21,7 +21,7 @@ function checkAuth() {
 
 function handleAuthResult(authResult) {
   if (authResult) {
-    listUpcomingEvents();
+    // exampleGoogleApiCall();
   }
 }
 
@@ -34,7 +34,7 @@ function onSignIn(googleUser) {
 	console.log('Name: ' + profile.getName());
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	listUpcomingEvents();
+	// exampleGoogleApiCall();
 }
 
 /**
@@ -51,22 +51,22 @@ function appendPre(message) {
 }
 
 /** This shows a working api call to google **/
-// function exampleGoogleApiCall() {
-// 	console.log("Listing events....");
-// 	gapi.client.load('calendar', 'v3', function() {
-//     var request = gapi.client.calendar.events.list({
-//       'calendarId': 'primary'
-//     });
+function exampleGoogleApiCall() {
+	console.log("Listing events....");
+	gapi.client.load('calendar', 'v3', function() {
+    var request = gapi.client.calendar.events.list({
+      'calendarId': 'primary'
+    });
           
-//     request.execute(function(resp) {
-//       for (var i = 0; i < resp.items.length; i++) {
-//         var li = document.createElement('li');
-//         li.appendChild(document.createTextNode(resp.items[i].summary));
-//         document.getElementById('events').appendChild(li);
-//       }
-//     });
-//   });
-// }
+    request.execute(function(resp) {
+      for (var i = 0; i < resp.items.length; i++) {
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(resp.items[i].summary));
+        document.getElementById('events').appendChild(li);
+      }
+    });
+  });
+}
 
 
 function setClientId() {
