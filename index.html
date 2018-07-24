@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="380976565966-c2546ogsf26q4773lg4tekc163b886ls.apps.googleusercontent.com">
-    <!-- Add in client ID after we get a URI -->
+    <meta name="google-signin-client_id" content=520056906118-sl31902v8ulmuktmg74olcdne4l3uq5c.apps.googleusercontent.com>
     <meta charset="UTF-8">
     <title>The Big Pineapple</title>
 
@@ -13,7 +11,6 @@
 
 <body>
     <div id="site-wrapper">
-
         <header>
             <div class="center-content">
                 <h1>The Big Pineapple</h1>
@@ -33,6 +30,8 @@
                     The fun and interactive way to log volunteer time
                 </p>
 
+                <!-- <div id='display-for-debugging'> <h1>Events</h1> <ul id='events'></ul></div> -->
+
                 <div class="g-signin2" data-onsuccess="onSignIn" style="margin: auto; width: 120px">Google Sign In</div>
             </div>
         </main>
@@ -43,13 +42,17 @@
             </div>
         </footer>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script src="http://code.jquery.com/jquery-3.3.1.js"integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="client_secret.json"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/signOn.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=initGoogleApi"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
 </body>
 
 </html>
-
