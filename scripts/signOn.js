@@ -4,7 +4,7 @@ let API_KEY;
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
 
-//Called when index.html loads
+//Called when index.html loads.
 function initGoogleApi() {
 	console.log("Starting javascript...");
 	setClientId();
