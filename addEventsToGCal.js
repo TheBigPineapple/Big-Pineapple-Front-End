@@ -12,6 +12,7 @@ createNewCal(gapi);
 addEventsToGCal(charityEvents, gapi);
 
 
+// uses the browser geolocation API
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -20,19 +21,19 @@ function getLocation() {
     }
 }
 
-
+// sets the global vars latitude and longitude to the right values
 function storePosition(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
 }
 
-
+// call the eventbrite API with the users location to return charity events
 function getCharityEvents(latitude, longitude) {
     var headers = {"Authorization" : "Bearer" + config.eventbrite_personal_OAuth};
     var public_token = "JC4FQ5WJYL7ZSF2H5G2O";
 
 
-    charity_category_id = "111";
+    var charity_category_id = "111";
     var params = {
         "location.latitude" : latitude,
         "location.longitude" : longitude,
@@ -50,51 +51,42 @@ function getCharityEvents(latitude, longitude) {
     return events;
 }
 
-
+// creates a new calendar titled 'Big Pineapple Calendar' on the user's account
 function createNewCal(gapi) {
     var params = {'summary' : 'Big Pineapple Calendar'};
     var args = {'path' : 'https://www.googleapis.com/calendar/v3/calendars', 'method' : 'POST', 'params' : params}
     gapi.client.request(args);
 }
 
-
+// takes a list of events and adds them all as GCal events on the Big Pineapple Calendar!
 function addEventsToGCal(events, gapi) {
-    var event = {
-        'summary': 'Google I/O 2015',
-        'location': '800 Howard St., San Francisco, CA 94103',
-        'description': 'A chance to hear more about Google\'s developer products.',
-        'start': {
-            'dateTime': '2015-05-28T09:00:00-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'end': {
-            'dateTime': '2015-05-28T17:00:00-07:00',
-            'timeZone': 'America/Los_Angeles'
-        },
-        'recurrence': [
-            'RRULE:FREQ=DAILY;COUNT=2'
-        ],
-        'attendees': [
-            {'email': 'lpage@example.com'},
-            {'email': 'sbrin@example.com'}
-        ],
-        'reminders': {
-            'useDefault': false,
-            'overrides': [
-                {'method': 'email', 'minutes': 24 * 60},
-                {'method': 'popup', 'minutes': 10}
-            ]
-        }
-    };
+    for (var i = 0; i < events.length; i++) {
+        var event = events[0];
 
+        var calEntry = {
+            'summary': event["name"]["text"],
+            'description': event["url"] + " \n " + event["description"]["text"],
+            'start': {
+                'dateTime': event["start"]["utc"],
+                'timeZone': event["start"]["timezone"]
+            },
+            'end': {
+                'dateTime': event["end"]["utc"],
+                'timeZone': event["end"]["timezone"]
+            },
+            'reminders': {
+                'useDefault': true,
+            }
+        };
+    }
 
+    // TODO: insert into the correct calendar (aka the one titled Big Pineapple Calendar)
     var request = gapi.client.calendar.events.insert({
         'calendarId': 'primary',
-        'resource': event
+        'resource': calEntry
     });
 
-    request.execute(function(event) {
-        appendPre('Event created: ' + event.htmlLink);
+    request.execute(function(calEntry) {
+        appendPre('Event created: ' + calEntry.htmlLink);
     });
-
 }
