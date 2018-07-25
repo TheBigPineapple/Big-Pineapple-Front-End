@@ -1,16 +1,17 @@
-var clientId = 'YOUR_CLIENT_ID';
-var apiKey = 'YOUR_API_KEY';
-var scopes = 'https://www.googleapis.com/auth/calendar';
+function handleAddingEvents(gapi) {
+    var clientId = 'YOUR_CLIENT_ID';
+    var apiKey = 'YOUR_API_KEY';
+    var scopes = 'https://www.googleapis.com/auth/calendar';
 
-// coordinates for event search set to Columbia University by default
-var latitude = 40.8075;
-var longitude = -73.9626;
+    // coordinates for event search set to Columbia University by default
+    var latitude = 40.8075;
+    var longitude = -73.9626;
 
-getLocation();
-var charityEvents = getCharityEvents(latitude, longitude);
-createNewCal(gapi);
-addEventsToGCal(charityEvents, gapi);
-
+    getLocation();
+    var charityEvents = getCharityEvents(latitude, longitude);
+    createNewCal(gapi);
+    addEventsToGCal(charityEvents, gapi);
+}
 
 // uses the browser geolocation API
 function getLocation() {
