@@ -10,31 +10,18 @@ function initGoogleApi() {
 	setClientId();
 	setApiKey();
 	gapi.client.setApiKey(API_KEY);
-	window.setTimeout(checkAuth,1);
-	checkAuth();
-}
-
-function checkAuth() {
-  gapi.auth.authorize({client_id: CLIENT_ID, scope: SCOPES, immediate: true},
-      handleAuthResult);
-}
-
-function handleAuthResult(authResult) {
-  if (authResult) {
-    // exampleGoogleApiCall();
-  }
 }
 
 // Might have to promise chain this with register habitica
 function onSignIn(googleUser) {
 	 gapi.auth.authorize(
-     	{client_id: CLIENT_ID, scope: SCOPES, immediate: false}, handleAuthResult);
+     	{client_id: CLIENT_ID, scope: SCOPES, immediate: false});
 	profile = googleUser.getBasicProfile();
 	console.log('ID: ' + profile.getId());
 	console.log('Name: ' + profile.getName());
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-	// exampleGoogleApiCall();
+	exampleGoogleApiCall();
 }
 
 /**
@@ -52,22 +39,22 @@ function appendPre(message) {
 
 /** This shows a working api call to google **/
 function exampleGoogleApiCall() {
-	console.log("Listing events....");
-	gapi.client.load('calendar', 'v3', function() {
-    var request = gapi.client.calendar.events.list({
-      'calendarId': 'primary'
-    });
+	displayUserCalendars();
+	// console.log("Listing events....");
+	// gapi.client.load('calendar', 'v3', function() {
+ //    var request = gapi.client.calendar.events.list({
+ //      'calendarId': 'primary'
+ //    });
           
-    request.execute(function(resp) {
-      for (var i = 0; i < resp.items.length; i++) {
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode(resp.items[i].summary));
-        document.getElementById('events').appendChild(li);
-      }
-    });
-  });
+ //    request.execute(function(resp) {
+ //      for (var i = 0; i < resp.items.length; i++) {
+ //        var li = document.createElement('li');
+ //        li.appendChild(document.createTextNode(resp.items[i].summary));
+ //        document.getElementById('events').appendChild(li);
+ //      }
+ //    });
+ //  });
 }
-
 
 function setClientId() {
 	CLIENT_ID = client_secret.web.client_id;
