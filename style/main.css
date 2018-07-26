@@ -57,10 +57,19 @@ footer a {
 .center-content {
     width: 1000px;
     margin: auto;
+    display: table;
 }
 
 .abcRioButtonContentWrapper {
     margin: auto;
+}
+
+.logo-img {
+    height: 1.4em;
+    padding-left: 7px;
+    padding-bottom: 7px;
+    vertical-align: top;
+    background-image: url(../media/logo.jpg);
 }
 
 #site-wrapper {
