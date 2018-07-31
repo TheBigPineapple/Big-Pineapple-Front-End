@@ -2,7 +2,7 @@ let profile;
 let CLIENT_ID;
 let API_KEY;
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+var SCOPES = "https://www.googleapis.com/auth/calendar";
 
 //Called when index.html loads.
 function initGoogleApi() {

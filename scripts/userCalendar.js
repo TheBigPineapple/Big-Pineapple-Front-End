@@ -1,37 +1,94 @@
-function displayUserCalendars() {
-  console.log("Getting calendar ids...");
-  startDisplayCalendarChain();
+//Using FullCalendar library to display user's G-Cal events
+var eventList = [];
+
+async function displayUserCalendars() {
+  try {
+    const calendars = await getCalendars();
+    await getEventsFromMultipleCalendars(calendars);
+    await putEventsInFullCalendar();
+  } catch(err){
+    console.log("Error: " + err);
+  }
 }
 
-function startDisplayCalendarChain() {
-	gapi.client.load('calendar', 'v3', function() {
-    var request = gapi.client.calendar.calendarList.list();
-    request.execute(function(resp) {
-      console.log(resp);
-      var userCalendars = resp.items;
-      makeHTMLCalendar(userCalendars)
+async function getCalendars() {
+  return new Promise(function(resolve,reject){
+    gapi.client.load('calendar', 'v3', function() {
+      var request = gapi.client.calendar.calendarList.list();
+
+      request.execute(function(resp) {
+        var calendars = resp.items;
+        resolve(calendars);
+      });
     });
   });
 }
 
-function makeHTMLCalendar(userCalendars) {
-  console.log("calendars: " + userCalendars);
-  var startOfCalendarIFrame = '<iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;';
-  var endOfCalendarIFrame = 'ctz=America%2FNew_York" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>';
-  var iframeCalendar = startOfCalendarIFrame;
-
-  for (var i = 0; i < userCalendars.length; i++) {
-    calendarId = userCalendars[i].id;
-    if (!calendarId.includes("#")) {
-      iframeCalendar += "src=" + userCalendars[i].id + "&amp;color=%23691426&amp;";
+async function getEventsFromMultipleCalendars(calendars) {
+  return new Promise(function(resolve,reject){
+    eventList = [];
+    let promiseChain = [];
+    for(let i = 0; i < calendars.length; i++){
+      var calendar = calendars[i];
+      if (calendar != null && !calendar.id.includes("#"))
+        promiseChain.push(getCalendarEvents(calendar));
     }
-  }
-  iframeCalendar += endOfCalendarIFrame;
-  console.log("Calendar iframe: " + iframeCalendar);
-  displayHTMLCalendar(iframeCalendar);
+
+    Promise.all(promiseChain)
+      .then(function(nothing){
+        resolve();
+      });
+  });
 }
 
-function displayHTMLCalendar(iframeCalendar) {
-  document.getElementById("landing-content").innerHTML+= iframeCalendar;
-    // document.getElementById('events').appendChild(iframeCalendar);
+function getCalendarEvents(calendar) {
+  return new Promise(function(resolve,reject){
+    gapi.client.load('calendar', 'v3')
+    .then(function() {
+      var request = gapi.client.calendar.events.list({
+        'calendarId': calendar.id
+      });
+
+      request.then(function(response) {
+        formatEventsForFullCalendar(response.result.items);
+        resolve();
+      });
+    });
+  });
+}
+
+function formatEventsForFullCalendar(events) {
+  for (var i = 0; i < events.length; i++) {
+    event = events[i];
+    if (event == null) continue;
+      pushEventIntoList(event);
+  }
+}
+
+function pushEventIntoList(event) {
+  try {
+    eventList.push({
+      id: event.id,
+      title: event.summary,
+      start: event.start.dateTime || event.start.date,
+      end: event.end.dateTime || event.end.date,
+      url: event.htmlLink,
+      location: event.location,
+      description: event.description
+    });
+  }
+  catch(err) {}
+}
+
+async function putEventsInFullCalendar() {
+  return new Promise(function(resolve,reject){
+    var successArgs = [ eventList ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
+    var successRes = $.fullCalendar.applyAll(true, this, successArgs);
+    var fullCal = $('#calendar').fullCalendar({
+    //options and callbacks
+        googleCalendarApiKey: 'AIzaSyAkA8yypJIM-rZe--f4P0uyR7wE91liuCY',
+    });
+    fullCal.fullCalendar('addEventSource', eventList);
+    resolve();
+  });
 }
