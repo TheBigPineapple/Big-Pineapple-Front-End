@@ -31,14 +31,14 @@ header > .center-content {
 header h1 {
     margin-bottom: 0px;
     font-family: title;
-    font-size: 3em;
+    font-size: 3.5em;
 }
 
 main {
     height: calc(100% - 58px);
-    padding-top: 5px;
     position: relative;
     z-index: 2;
+    overflow-y: auto;
 }
 
 footer {
@@ -55,13 +55,28 @@ footer a {
 }
 
 .center-content {
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
     display: table;
 }
 
 .abcRioButtonContentWrapper {
     margin: auto;
+}
+
+#calendar-container {
+    display: none;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: white;
+    box-shadow: 5px 5px 5px rgba(0,0,0,.2);
+    width: 800px;
+    padding: 30px;
+}
+
+#habitica-container {
+    display: none;
+    background: #6133b4;
 }
 
 .logo-img {
@@ -103,7 +118,6 @@ footer a {
 }
 
 #landing-content > h2 {
-    font-size: 3em;
     opacity: .9;
     text-decoration: underline;
 }

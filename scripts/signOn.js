@@ -21,7 +21,18 @@ function onSignIn(googleUser) {
 	console.log('Name: ' + profile.getName());
 	console.log('Image URL: ' + profile.getImageUrl());
 	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+	reformatUIForCalendar();
+
 	exampleGoogleApiCall();
+}
+
+function reformatUIForCalendar () {
+	document.getElementById('landing-content').style.display = 'none';
+	document.getElementById('habitica-container').style.display = 'block';
+	document.getElementById('calendar-container').style.display = 'table';
+
+
 }
 
 /**

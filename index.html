@@ -34,16 +34,21 @@
                 <!-- <div id='display-for-debugging'> <h1>Events</h1> <ul id='events'></ul></div> -->
 
                 <div class="g-signin2" data-onsuccess="onSignIn" style="margin: auto; width: 120px">Google Sign In</div>
+            </div>
 
+            <div id="habitica-container">
+                HABITICA
+            </div>
+
+            <div id="calendar-container" class="center-content">
                 <div id='content'>
-                    <h1>Events</h1>
+                    <h2>Events</h2>
                     <ul id='events'></ul>
                 </div>
 
                 <a href='addEvents' id='authorize-button' onclick='handleAddingEvents(<!-- TODO: pass in gapi-->);'>Click Here to Add Volunteer Events to Your Calendar!</a>
 
                 <div id='calendar'></div>
-
             </div>
         </main>
 
