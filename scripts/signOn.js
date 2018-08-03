@@ -32,7 +32,7 @@ function reformatUIForCalendar () {
 		}
 	});
 
-	previewCalendar();
+	initCalendar();
 }
 
 function populateHabiticaBar (userData) {
@@ -88,9 +88,27 @@ async function setApiKey() {
 	});
 }
 
-function previewCalendar() {
-  fullCalendar = $('#calendar').fullCalendar({
-      googleCalendarApiKey: 'AIzaSyAkA8yypJIM-rZe--f4P0uyR7wE91liuCY',
+function initCalendar() {
+  	fullCalendar = $('#calendar').fullCalendar({
+	// googleCalendarApiKey: 'AIzaSyAkA8yypJIM-rZe--f4P0uyR7wE91liuCY',
+	// textColor: 'white',
+	eventClick: function(calEvent, jsEvent, view) {
+	    $(this).css('border-color', 'red', 'border-width', 'thick');
+	    setSelectedEvent(event);
+  	},
+	customButtons: {
+		logEventHours: {
+			text: 'Log Hours From Event',
+			click: function() {
+				logEventHours();
+			}
+		}
+	},
+	header: {
+		left: 'prev,next today logEventHours',
+		center: 'title',
+		right: 'month,agendaWeek,agendaDay'
+	}
   });
 }
 

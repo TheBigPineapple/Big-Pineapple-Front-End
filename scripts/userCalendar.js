@@ -80,9 +80,9 @@ function pushEventIntoList(event) {
       title: event.summary,
       start: event.start.dateTime || event.start.date,
       end: event.end.dateTime || event.end.date,
-      url: event.htmlLink,
+      // url: event.htmlLink,
       location: event.location,
-      description: event.description
+      description: event.description,
     });
   }
   catch(err) {}
@@ -92,8 +92,7 @@ async function putEventsInFullCalendar() {
   return new Promise(function(resolve,reject){
     var successArgs = [ eventList ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
     var successRes = $.fullCalendar.applyAll(true, this, successArgs);
-    fullCal = $('#calendar').fullCalendar();
-    fullCal.fullCalendar('addEventSource', eventList);
+    fullCalendar.fullCalendar('addEventSource', eventList);
     resolve();
   });
 }
