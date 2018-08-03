@@ -5,6 +5,7 @@ function addHours (numHours) {
 	}, 2000);
 
 	// Update Cookies here
+	processAddedHours(numHours);
 
 	updateHabiticaBar();
 }
@@ -24,6 +25,24 @@ function reformatUIForCalendar (googleUser) {
 			name: profile.getName()
 		}
 	});
+
+	// Check for and set default cookie values
+	var currentLvl = parseInt(getCookie('lvl'));
+	var currentExp = parseInt(getCookie('exp'));
+	var currentHours = parseInt(getCookie('hours'));
+	var currentHp = parseInt(getCookie('hp'));
+
+	if (!currentLvl)
+		currentLvl = 1;
+	if (!currentExp)
+		currentExp = 0;
+	if (!currentHours)
+		currentHours = 0;
+	if (!currentHp)
+		currentHp = 100;
+
+	updateCookies(currentLvl, currentExp, currentHours, currentHp);
+
 	updateHabiticaBar();
 
 	previewCalendar();
@@ -35,8 +54,8 @@ function setUserInfo (userData) {
 }
 
 function updateHabiticaBar () {
-	document.getElementById('hp-field').innerHTML = getCookie('health');
-	document.getElementById('exp-field').innerHTML = getCookie('exp');
+	document.getElementById('hp-field').innerHTML = getCookie('hp');
+	document.getElementById('exp-field').innerHTML = "" + getCookie('exp') + "/" + EXP_TO_LEVEL_UP;
 	document.getElementById('level-field').innerHTML = getCookie('lvl');
 	document.getElementById('class-field').innerHTML = 'warrior';
 	document.getElementById('hours-field').innerHTML = getCookie('hours');

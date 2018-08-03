@@ -3,7 +3,7 @@ let SCOPES = "https://www.googleapis.com/auth/calendar";
 var charityCalendarName = "Big Pineapple Calendar";
 var fullCalendar;
 
-async function onSignIn(googleUser) {
+async function onSignIn (googleUser) {
 	console.log("Starting...");
 	initGoogleApi();
 	reformatUIForCalendar(googleUser);
