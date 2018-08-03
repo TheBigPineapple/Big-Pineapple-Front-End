@@ -84,6 +84,52 @@ footer a {
     display: none;
     width: 100%;
     background: #36205D;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#habitica-bar {
+    margin: auto;
+    display: table;
+    color: white;
+}
+
+#habitica-bar > div {
+    display: inline-block;
+    vertical-align: top;
+}
+
+#profile-picture {
+    background: #D5C8FF;
+    border: 3px solid #9C91C0;
+    width: 140px;
+    height: 140px;
+}
+
+#profile-picture-img {
+    height: 100%;
+    width: 100%;
+}
+
+#user-stats {
+    margin-left: 10px;
+}
+
+#username-field {
+    font-size: 1.5em;
+}
+
+#about-character-bar {
+    font-size: .8em;
+    opacity: .8;
+}
+
+#hp-field {
+    color: #F74E52;
+}
+
+#exp-field {
+    color: #FFBE5D;
 }
 
 .logo-img {
