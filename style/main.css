@@ -41,7 +41,7 @@ header img {
 }
 
 main {
-    height: calc(100% - 58px);
+    height: calc(100% - 98px);
     position: relative;
     z-index: 2;
     overflow-y: auto;
@@ -120,6 +120,8 @@ footer a {
 
 #user-stats {
     margin-left: 10px;
+    height: 140px;
+    position: relative;
 }
 
 #username-field {
@@ -132,6 +134,12 @@ footer a {
     opacity: .6;
 }
 
+#stats-bars {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+}
+
 #hp-field {
     color: #F74E52;
 }
@@ -140,12 +148,21 @@ footer a {
     color: #FFBE5D;
 }
 
-#open-in-habitica {
+#habitica-right {
     float: right;
+    height: 140px;
+    position: relative;
 }
 
-#open-in-habitica img {
+#habitica-right img {
     height: 30px;
+}
+
+#hours {
+    text-align: right;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }
 
 .logo-img {
@@ -162,7 +179,7 @@ footer a {
 }
 
 #background {
-    height: calc(100% - 58px);
+    height: calc(100% - 98px);
     width: 100%;
     background-image: url(../media/background.jpg);
     background-attachment: fixed;
