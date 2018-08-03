@@ -16,7 +16,6 @@ function reformatUIForCalendar (googleUser) {
 	document.getElementById('calendar-container').style.display = 'table';
 
 	let profile = googleUser.getBasicProfile();
-	console.log(profile);
 
 	// Pass in the Habitica User object, not the hard coded info, obviously
 	setUserInfo({

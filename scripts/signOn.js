@@ -51,8 +51,7 @@ function initCalendar() {
   	fullCalendar = $('#calendar').fullCalendar({
 	eventClick: function(calEvent, jsEvent, view) {
 	    $(this).css('border-color', 'red');
-	    console.log("Event clicked: " + event.title);
-	    setSelectedEvent(event);
+	    setSelectedEvent(calEvent);
   	},
 	customButtons: {
 		logEventHours: {
