@@ -45,7 +45,7 @@ function reformatUIForCalendar (googleUser) {
 
 	updateHabiticaBar();
 
-	previewCalendar();
+	initCalendar();
 }
 
 function setUserInfo (userData) {
@@ -54,9 +54,11 @@ function setUserInfo (userData) {
 }
 
 function updateHabiticaBar () {
-	document.getElementById('hp-field').innerHTML = getCookie('hp');
-	document.getElementById('exp-field').innerHTML = "" + getCookie('exp') + "/" + EXP_TO_LEVEL_UP;
-	document.getElementById('level-field').innerHTML = getCookie('lvl');
-	document.getElementById('class-field').innerHTML = 'warrior';
-	document.getElementById('hours-field').innerHTML = getCookie('hours');
+    var currentLvl = parseInt(getCookie('lvl'));
+
+    document.getElementById('hp-field').innerHTML = getCookie('hp');
+    document.getElementById('exp-field').innerHTML = "" + getCookie('exp') + "/" + (EXP_TO_LEVEL_UP * currentLvl);
+    document.getElementById('level-field').innerHTML = getCookie('lvl');
+    document.getElementById('class-field').innerHTML = 'warrior';
+    document.getElementById('hours-field').innerHTML = getCookie('hours');
 }

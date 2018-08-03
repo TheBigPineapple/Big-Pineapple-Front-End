@@ -1,11 +1,8 @@
 function processAddedHours(addedHours) {
-    var CONFIG = require('./statsCONFIG.js');
-
     var currentLvl = parseInt(getCookie('lvl'));
     var currentExp = parseInt(getCookie('exp'));
     var currentHours = parseInt(getCookie('hours'));
     var currentHp = parseInt(getCookie('hp'));
-
     // add the completed hours!
     currentHours += addedHours;
 
