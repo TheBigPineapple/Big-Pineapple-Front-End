@@ -6,52 +6,11 @@ var fullCalendar;
 async function onSignIn(googleUser) {
 	console.log("Starting...");
 	initGoogleApi();
-	reformatUIForCalendar();
+	reformatUIForCalendar(googleUser);
 	if (! await userHasCharityCalendar())
 		await addCharityCalendarToUserCalendar();
 	await displayUserCalendars();
 	console.log("Finished displaying user calendars");
-}
-
-function reformatUIForCalendar () {
-	document.getElementById('landing-content').style.display = 'none';
-	document.getElementById('habitica-container').style.display = 'table';
-	document.getElementById('calendar-container').style.display = 'table';
-
-	// Pass in the Habitica User object, not the hard coded info, obviously
-	populateHabiticaBar({
-		profile: {
-			imageUrl: 'https://avatars1.githubusercontent.com/u/20672636?s=460&v=4',
-			name: "Samuel"
-		},
-		stats: {
-			hp: '56/100',
-			exp: '1234/5000',
-			lvl: 12,
-			class: 'warrior'
-		}
-	});
-
-	previewCalendar();
-}
-
-function populateHabiticaBar (userData) {
-	/*
-		userData.profile.imageUrl
-		userData.profile.name
-		userData.stats.hp
-		userData.stats.exp
-		userData.stats.lvl
-		userData.stats.class
-		userData.party
-	*/
-
-	document.getElementById('profile-picture-img').src = userData.profile.imageUrl;
-	document.getElementById('username-field').innerHTML = userData.profile.name;
-	document.getElementById('hp-field').innerHTML = userData.stats.hp;
-	document.getElementById('exp-field').innerHTML = userData.stats.exp;
-	document.getElementById('level-field').innerHTML = userData.stats.lvl;
-	document.getElementById('class-field').innerHTML = userData.stats.class;
 }
 
 /**

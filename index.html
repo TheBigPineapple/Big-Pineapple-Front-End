@@ -51,23 +51,25 @@
                         <div id="about-character-bar">
                             Level <span id="level-field">0</span> <span id="class-field">CLASS</span>
                         </div>
-                        <br />
 
-                        <div id="hp-bar">
-                            <img src="media/heart.png" class="icon" /> <span id="hp-field">100</span>
-                        </div>
-                        <div id="exp-bar">
-                            <img src="media/coin.png" class="icon" /> <span id="exp-field">0/100</span>
+                        <div id="stats-bars">
+                            <div id="hp-bar">
+                                <img src="media/heart.png" class="icon" /> <span id="hp-field">100</span>
+                            </div>
+                            <div id="exp-bar">
+                                <img src="media/sparkles.png" class="icon" /> <span id="exp-field">0/100</span>
+                            </div>
                         </div>
                     </div>
 
-                    <button id="open-in-habitica" class="btn btn-light" onclick="openHabitica()" >
-                        <img src="media/habitica-logo.png"/>
-                    </button>
-
-                    <button onclick="toggleConfetti()" class="btn btn-primary">
-                        YEEE
-                    </button>
+                    <div id="habitica-right">
+                        <button class="btn btn-light" onclick="openHabitica()" >
+                            <img src="media/habitica-logo.png"/>
+                        </button>
+                        <div id="hours">
+                            <h4 style="margin-bottom: 0px;"><span id="hours-field">0</span> hours</h4>
+                        </div>
+                    </div>
                 </div>
                 <!--<img src="./media/habitica.png" height="150" style="margin: auto; margin-bottom: 10px; margin-top: 10px; display: table" />-->
             </div>
@@ -84,11 +86,11 @@
             </div>
         </main>
 
-        <footer>
+       <!-- <footer>
             <div class="center-content">
                 Check out the project on <a href="https://github.com/TheBigPineapple" target="_blank">GitHub</a>
             </div>
-        </footer>
+        </footer>-->
     </div>
     <script src="http://code.jquery.com/jquery-3.3.1.js"integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
@@ -109,5 +111,6 @@
     <script src="scripts/userCalendar.js"></script>
     <script src="scripts/signOn.js"></script>
     <script src="scripts/confetti.js"></script>
+<script src="scripts/UIFunctions.js"></script>
 </body>
 </html>
