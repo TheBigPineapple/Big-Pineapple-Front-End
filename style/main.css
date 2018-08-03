@@ -70,6 +70,11 @@ footer a {
     margin: auto;
 }
 
+.icon {
+    height: 24px;
+    width: 24px;
+}
+
 #calendar-container {
     display: none;
     margin-top: 20px;
@@ -83,7 +88,7 @@ footer a {
 #habitica-container {
     display: none;
     width: 100%;
-    background: #36205D;
+    background: #36205d;
     box-shadow: 0px 5px 5px rgba(0,0,0,.1);
     padding-top: 10px;
     padding-bottom: 10px;
@@ -124,7 +129,7 @@ footer a {
 #about-character-bar {
     font-size: .8em;
     line-height: 1em;
-    opacity: .8;
+    opacity: .6;
 }
 
 #hp-field {
@@ -188,4 +193,14 @@ footer a {
 
 #landing-content > p {
     color: gray;
+}
+
+#canvas {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
 }
