@@ -29,7 +29,7 @@ function onSignIn(googleUser) {
 
 function reformatUIForCalendar () {
 	document.getElementById('landing-content').style.display = 'none';
-	document.getElementById('habitica-container').style.display = 'block';
+	document.getElementById('habitica-container').style.display = 'table';
 	document.getElementById('calendar-container').style.display = 'table';
 
 

@@ -25,13 +25,19 @@ header {
 }
 
 header > .center-content {
-    padding-top: 10px;
+    padding-top: 20px;
+    padding-bottom: -10px;
 }
 
 header h1 {
     margin-bottom: 0px;
     font-family: title;
     font-size: 3.5em;
+}
+
+header img {
+    position: relative;
+    top: -15px;
 }
 
 main {
@@ -76,7 +82,8 @@ footer a {
 
 #habitica-container {
     display: none;
-    background: #6133b4;
+    width: 100%;
+    background: #36205D;
 }
 
 .logo-img {
