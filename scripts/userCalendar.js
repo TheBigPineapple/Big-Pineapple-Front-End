@@ -1,5 +1,4 @@
-//Using FullCalendar library to display user's G-Cal events
-var eventList = [];
+let eventList = [];
 
 async function displayUserCalendars() {
   try {
@@ -9,6 +8,15 @@ async function displayUserCalendars() {
   } catch(err){
     console.log("Error: " + err);
   }
+}
+
+async function userHasCharityCalendar() {
+  const userCalendars = await getCalendars();
+  for (let i = 0; i < userCalendars.length; i++) {
+    if (userCalendars[i].summary.includes(charityCalendarName))
+      return true;  
+  }
+  return false;
 }
 
 async function getCalendars() {
@@ -84,10 +92,7 @@ async function putEventsInFullCalendar() {
   return new Promise(function(resolve,reject){
     var successArgs = [ eventList ].concat(Array.prototype.slice.call(arguments, 1)); // forward other jq args
     var successRes = $.fullCalendar.applyAll(true, this, successArgs);
-    var fullCal = $('#calendar').fullCalendar({
-    //options and callbacks
-        googleCalendarApiKey: 'AIzaSyAkA8yypJIM-rZe--f4P0uyR7wE91liuCY',
-    });
+    fullCal = $('#calendar').fullCalendar();
     fullCal.fullCalendar('addEventSource', eventList);
     resolve();
   });
