@@ -1,69 +1,16 @@
-let profile;
-let CLIENT_ID;
-let API_KEY;
-var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-var SCOPES = "https://www.googleapis.com/auth/calendar";
+let DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
+let SCOPES = "https://www.googleapis.com/auth/calendar";
+var charityCalendarName = "Big Pineapple Calendar";
+var fullCalendar;
 
-//Called when index.html loads.
-function initGoogleApi () {
-	console.log("Starting javascript...");
-	setClientId();
-	setApiKey();
-	gapi.client.setApiKey(API_KEY);
-}
-
-// Might have to promise chain this with register habitica
-function onSignIn (googleUser) {
-	 gapi.auth.authorize(
-     	{client_id: CLIENT_ID, scope: SCOPES, immediate: false});
-	profile = googleUser.getBasicProfile();
-	console.log('ID: ' + profile.getId());
-	console.log('Name: ' + profile.getName());
-	console.log('Image URL: ' + profile.getImageUrl());
-	console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-
-	reformatUIForCalendar();
-
-	exampleGoogleApiCall();
-}
-
-function reformatUIForCalendar () {
-	document.getElementById('landing-content').style.display = 'none';
-	document.getElementById('habitica-container').style.display = 'table';
-	document.getElementById('calendar-container').style.display = 'table';
-
-	// Pass in the Habitica User object, not the hard coded info, obviously
-	populateHabiticaBar({
-		profile: {
-			imageUrl: 'https://avatars1.githubusercontent.com/u/20672636?s=460&v=4',
-			name: "Samuel"
-		},
-		stats: {
-			hp: '56/100',
-			exp: '1234/5000',
-			lvl: 12,
-			class: 'warrior'
-		}
-	});
-}
-
-function populateHabiticaBar (userData) {
-	/*
-		userData.profile.imageUrl
-		userData.profile.name
-		userData.stats.hp
-		userData.stats.exp
-		userData.stats.lvl
-		userData.stats.class
-		userData.party
-	*/
-
-	document.getElementById('profile-picture-img').src = userData.profile.imageUrl;
-	document.getElementById('username-field').innerHTML = userData.profile.name;
-	document.getElementById('hp-field').innerHTML = userData.stats.hp;
-	document.getElementById('exp-field').innerHTML = userData.stats.exp;
-	document.getElementById('level-field').innerHTML = userData.stats.lvl;
-	document.getElementById('class-field').innerHTML = userData.stats.class;
+async function onSignIn(googleUser) {
+	console.log("Starting...");
+	initGoogleApi();
+	reformatUIForCalendar(googleUser);
+	if (! await userHasCharityCalendar())
+		await addCharityCalendarToUserCalendar();
+	await displayUserCalendars();
+	console.log("Finished displaying user calendars");
 }
 
 /**
@@ -73,33 +20,14 @@ function populateHabiticaBar (userData) {
 // 	gapi.auth2.getAuthInstance().signOut();
 // }
 
-function appendPre(message) {
-	var pre = document.getElementById('display-for-debugging');
-	var textContent = document.createTextNode(message + '\n');
-	pre.appendChild(textContent);
-}
-
-/** This shows a working api call to google **/
-function exampleGoogleApiCall() {
-	displayUserCalendars();
-	// console.log("Listing events....");
-	// gapi.client.load('calendar', 'v3', function() {
- //    var request = gapi.client.calendar.events.list({
- //      'calendarId': 'primary'
- //    });
-          
- //    request.execute(function(resp) {
- //      for (var i = 0; i < resp.items.length; i++) {
- //        var li = document.createElement('li');
- //        li.appendChild(document.createTextNode(resp.items[i].summary));
- //        document.getElementById('events').appendChild(li);
- //      }
- //    });
- //  });
+async function initGoogleApi() {
+	setClientId();
+	await setApiKey();
+	gapi.auth.authorize({client_id: CLIENT_ID, scope: SCOPES, immediate: false});
 }
 
 function setClientId() {
-	CLIENT_ID = client_secret.web.client_id;
+	CLIENT_ID = google_client_secret.web.client_id;
 	var $meta = $('meta[name=google-signin-client_id]').attr('content', CLIENT_ID);
 }
 
@@ -107,10 +35,28 @@ function getClientID() {
 	return CLIENT_ID;
 }
 
-function setApiKey() {
-	API_KEY = client_secret.web.api_key;
+async function setApiKey() {
+	return new Promise(function(resolve,reject){
+		//This below takes time, but has no async call back.
+		API_KEY = google_client_secret.web.api_key;
+		//Below is a fake async wait to let things catch up
+		setTimeout(function() {
+			gapi.client.setApiKey(API_KEY);
+			resolve();
+		}, 500);
+	});
+}
+
+function previewCalendar() {
+  fullCalendar = $('#calendar').fullCalendar({
+      googleCalendarApiKey: 'AIzaSyAkA8yypJIM-rZe--f4P0uyR7wE91liuCY',
+  });
 }
 
 function getApiKey() {
-	return api_key;
+	return API_KEY;
+}
+
+function getScopes() {
+	return SCOPES;
 }

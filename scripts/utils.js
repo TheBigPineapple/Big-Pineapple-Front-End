@@ -17,3 +17,9 @@ function getCookie(cname) {
 	}
 	return "";
 }
+
+function openHabitica () {
+	var win = window.open('https://habitica.com/', '_blank');
+	win.focus();
+	console.log("asdf");
+}
