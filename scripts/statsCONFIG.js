@@ -1,0 +1,3 @@
+const HP_PER_LEVEL = 10;
+const EXP_PER_HOUR = 350;
+const EXP_TO_LEVEL_UP = 1000;
