@@ -4,6 +4,8 @@ The fun and interactive way to give back to the community.
 # Overview
 Big Pineapple is a volunteer project we started to make volunteering simpler and more incentivized.  We believe that no product can replace the power of human interaction and volunteering for a truly great cause, but that our job is to enable and encourage others to volunteer and help those who need it the most. 
 
+![alt text](demo.gif "Logo Title Text 1")
+
 # How?
 To make logging hours a little more 🎉✨fun!✨🎉we create digital characters in Habitica, and give users coins, power-ups, and monster fighting abilities when they log volunteer hours!
 To make finding a volunteer opportunity simpler, we’re programmatically filling a Google Calendar with nearby events.
